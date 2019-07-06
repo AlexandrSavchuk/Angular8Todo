@@ -22,7 +22,7 @@ export class TodosService {
   constructor(private http: HttpClient) { }
 
   fetchTodos(): Observable<Todo[]> {
-    return this.http.get<Todo []> ('https://jsonplaceholder.typicode.com/todos?_limit=3')
+    return this.http.get<Todo []> ('https://jsonplaceholder.typicode.com/todos?_limit=30')
       .pipe(tap(todos => this.todos = todos));
   }
 
