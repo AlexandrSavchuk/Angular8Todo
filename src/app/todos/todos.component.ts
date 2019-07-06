@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Todo} from '../app.component';
+import {Component, OnInit} from '@angular/core';
+import {TodosService} from '../shared/todos.service';
+
 
 @Component({
   selector: 'app-todos',
@@ -8,16 +9,13 @@ import {Todo} from '../app.component';
 })
 export class TodosComponent implements OnInit {
 
-  @Input() todos: Todo[] = [];
-  @Output() onToggle = new EventEmitter<number>();
-
-  constructor() { }
+  constructor(private todosService: TodosService) { }
 
   ngOnInit() {
   }
 
   onChange(id: number) {
-    this.onToggle.emit(id);
+    this.todosService.onToggle(id);
   }
 
 }
