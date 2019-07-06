@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodosService} from '../shared/todos.service';
+import {pipe} from 'rxjs';
+import {delay} from 'rxjs/operators';
 
 
 @Component({
@@ -14,7 +16,9 @@ export class TodosComponent implements OnInit {
   constructor(private todosService: TodosService) { }
 
   ngOnInit() {
-    this.todosService.fetchTodos().subscribe( () => {this.loading = false});
+    this.todosService.fetchTodos()
+      .pipe(delay(500)) // задержка 0.5 сек
+      .subscribe( () => {this.loading = false; });
   }
 
   onChange(id: number) {
